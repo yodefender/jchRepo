@@ -1,0 +1,35 @@
+#{extends 'main.html' /}
+#{set title:'Adding Task' /}
+
+#{form @save()}
+    <input type="hidden" name="contact.id" value="${contact?.id}">
+    
+    <p class="field">
+        <label for="name">Task name:</label>
+        <input type="text" id="name" name="task.name" value="${task?.name}">
+        <span class="error">${errors.forKey('task.name')}</span>
+    </p>
+
+    <p class="field">
+        <label for="task">Task:</label>
+        <input type="text" id="task" name="task.task" value="${task?.task}">
+        <span class="error">${errors.forKey('task.task')}</span>
+    </p>
+
+    <p class="field">
+        <label for="importance">Task importance:</label>
+        <input type="text" id="importance" name="task.importance" value="${task?.importance}">
+        <span class="error">${errors.forKey('task.importance')}</span>
+    </p>
+   
+    <p class="field">
+        <label for="isDone">is done:</label>
+        <input type="text" id="isDone" name="task.isDone" value="${task?.isDone}">
+        <span class="error">${errors.forKey('task.isDone')}</span>
+    </p>
+
+    <p class="buttons">
+     	<a href="@{list()}">Cancel</a> or <input type="submit" value="Save this task" id="saveContact">
+    </p>
+    
+#{/form}

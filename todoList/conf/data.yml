@@ -1,0 +1,12 @@
+Task(task1):
+    name:       task1
+    task:  zrobic cos
+    importance:  malo wazny
+    isDone:      tak
+
+Task(task2):
+    name:       task2
+    task:  zrobic cos znowu
+    importance:  wazny
+    isDone:      nie
+    
