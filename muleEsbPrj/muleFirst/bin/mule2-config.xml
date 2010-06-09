@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesource.org/schema/mule/core/2.2"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:spring="http://www.springframework.org/schema/beans"
+       xmlns:soap="http://www.mulesource.org/schema/mule/soap/2.2"
+       xmlns:jms="http://www.mulesource.org/schema/mule/jms/2.2"
+       xmlns:xm="http://www.mulesource.org/schema/mule/xml/2.2"
+       xmlns:axis="http://www.mulesource.org/schema/mule/axis/2.2"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.mulesource.org/schema/mule/core/2.2 http://www.mulesource.org/schema/mule/core/2.2/mule.xsd
+       http://www.mulesource.org/schema/mule/soap/2.2 http://www.mulesource.org/schema/mule/soap/2.2/mule-soap.xsd
+       http://www.mulesource.org/schema/mule/axis/2.2 http://www.mulesource.org/schema/mule/axis/2.2/mule-axis.xsd
+       http://www.mulesource.org/schema/mule/vm/2.2 http://www.mulesource.org/schema/mule/vm/2.2/mule-vm.xsd
+       http://www.mulesource.org/schema/mule/xml/2.2 http://www.mulesource.org/schema/mule/xml/2.2/mule-xml.xsd
+       http://www.mulesource.org/schema/mule/jms/2.2 http://www.mulesource.org/schema/mule/jms/2.2/mule-jms.xsd">
+
+
+	<jms:connector name="JmsActiveMQConnector"
+				   specification="1.1"
+				   jndiProviderUrl="tcp://192.168.0.125:61616"
+				   jndiInitialFactory="org.apache.activemq.jndi.ActiveMQInitialContextFactory"
+				   connectionFactoryJndiName="ConnectionFactory"/>
+
+    <model name="muleFirst">
+        <service name="muleFirstWS">
+        
+            <inbound>
+                <axis:inbound-endpoint address="http://localhost:65081/services" style="WRAPPED" use="LITERAL">
+                    <soap:http-to-soap-request-transformer/>
+                </axis:inbound-endpoint>
+                <axis:inbound-endpoint address="http://localhost:65082/services">
+                <axis:soap-service interface="pl.serapis.mule.component.IMuleComp2"/>
+                </axis:inbound-endpoint>
+            </inbound>
+            
+            <component class="pl.serapis.mule.component.MuleComp2"/>
+			
+			<outbound>
+				<list-message-splitter-router>
+					<jms:outbound-endpoint queue="MoneyTransfer">
+						<transformers>
+							<xm:object-to-xml-transformer/>
+							<custom-transformer class="org.mule.transport.jms.transformers.ObjectToJMSMessage"/>
+						</transformers>
+					</jms:outbound-endpoint>
+				</list-message-splitter-router>
+			</outbound>
+        	
+        </service>
+    </model>
+
+</mule>
