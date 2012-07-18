@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:tns="http://rsw.orange.pl/tlsAdapter/to/"
+	xmlns:wsr="http://www.openuri.org/2002/10/soap/reliability/"
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:conv="http://www.openuri.org/2002/04/wsdl/conversation/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://rsw.orange.pl/tlsAdapter/to/">
+	<types xmlns:tns="http://rsw.orange.pl/tlsAdapter/to/"
+		xmlns:wsr="http://www.openuri.org/2002/10/soap/reliability/"
+		xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+		xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+		xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:conv="http://www.openuri.org/2002/04/wsdl/conversation/"
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema"
+		xmlns="http://schemas.xmlsoap.org/wsdl/">
+		<xs:schema xmlns:tns="http://rsw.orange.pl/tlsAdapter/to/"
+			xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://rsw.orange.pl/tlsAdapter/to/">
+			<xs:annotation>
+				<xs:documentation>Definicje wspolne dla komunikacji z RSW
+				</xs:documentation>
+			</xs:annotation>
+			<xs:element name="docSubmitRSWOrderRequest">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>Zlozenie zamowien przekazywane
+							do RSW
+						</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element type="tns:submittedOrder" name="submittedOrders"
+							maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Lista zamowien</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element type="xs:string" name="channel">
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="submittedOrder">
+				<xs:annotation>
+					<xs:documentation>Dane zamowienia</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="orderId">
+					</xs:element>
+					<xs:element type="tns:segment" name="segment" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="CRMcustomerId"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="CRMcaseId" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:boolean" name="newCustomer"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:double" name="netPrice">
+					</xs:element>
+					<xs:element type="xs:double" name="netPriceAfterProfitRebate"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:int" name="profitPoints" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:int" name="paymentType" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:double" name="netShippingPrice">
+					</xs:element>
+					<xs:element type="tns:shippingType" name="shippingType">
+					</xs:element>
+					<xs:element type="tns:submittedPackage" name="submittedPackages"
+						maxOccurs="unbounded">
+					</xs:element>
+					<xs:element type="tns:deliveryForm" name="deliveryForm"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="deliveryTime"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="contactPhone"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="contactEmail"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="tns:additionalAgreement" name="additionalAgreements"
+						minOccurs="0" maxOccurs="unbounded">
+					</xs:element>
+					<xs:element type="tns:companyOrderData" name="companyOrderData"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="tns:personalOrderData" name="personalOrderData"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:date" name="shopRegulations"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:date" name="promotionRegulations"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="tns:welcomeLetter" name="welcomeLetter"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="tns:documentsType" name="documents"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="operator" minOccurs="0">
+					</xs:element>
+					
+					//TODO add
+					<xs:element type="xs:string" name="msisdn" minOccurs="0">
+					</xs:element>
+					
+					//TODO remove notes
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="submittedPackage">
+				<xs:annotation>
+					<xs:documentation>Dane pakietu</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="packageId">
+					</xs:element>
+					<xs:element type="xs:string" name="processType">
+					</xs:element>
+					<xs:element type="tns:sku" name="skuList" maxOccurs="unbounded">
+					</xs:element>
+					<xs:element type="xs:int" name="amount">
+					</xs:element>
+					<xs:element type="xs:double" name="unitNetPrice">
+					</xs:element>
+					<xs:element type="xs:double" name="declaredPrice"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="MSISDN" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="MSISDNType"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:int" name="loyaltyLength"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="offerId" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="offerBusinessName"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="rateplan" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="rateplanFullName"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="market" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:double" name="penaltyFee"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="tns:account" name="account" minOccurs="0">
+					</xs:element>
+					<xs:element type="tns:service" name="services"
+						minOccurs="0" maxOccurs="unbounded">
+					</xs:element>
+					<xs:element type="tns:bonus" name="bonuses" minOccurs="0"
+						maxOccurs="unbounded">
+					</xs:element>
+					<xs:element type="xs:string" name="penaltyType"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="tns:loyalty" name="loyalitiesForService"
+						minOccurs="0" maxOccurs="unbounded">
+					</xs:element>
+					
+					//TODO remove installationAddress
+					
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="welcomeLetter">
+				<xs:annotation>
+					<xs:documentation>Informacje wykorzystywane do drukowania listu
+						powitalnego
+					</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="title" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="body" minOccurs="0">
+					</xs:element>
+					<xs:element type="tns:giftDesc" name="giftDescList"
+						minOccurs="0" maxOccurs="unbounded">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="documentsType">
+				<xs:sequence>
+					<xs:element type="tns:documentType" name="documentList"
+						maxOccurs="unbounded">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="documentType">
+				<xs:sequence>
+					<xs:element type="xs:string" name="documentId">
+					</xs:element>
+					<xs:element type="tns:documentParameterType" name="parameter"
+						maxOccurs="unbounded">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="documentParameterType">
+				<xs:sequence>
+					<xs:element type="xs:string" name="value">
+					</xs:element>
+					<xs:element type="xs:string" name="name">
+					</xs:element>
+					<xs:element type="tns:ArrayOfstring" name="valueList">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfstring">
+				<xs:sequence>
+					<xs:element type="xs:string" name="string" maxOccurs="unbounded"
+						nillable="true">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="giftDesc">
+				<xs:annotation>
+					<xs:documentation>Dane dla wydruku informacji o gifcie na liscie
+						powitalnym
+					</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="desc">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="docSubmitRSWOrderResponse">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>Odpowiedz na zlozenie zamowien
+						</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element type="tns:submittedOrderResult" name="submittedOrderResults"
+							minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Lista wynikow przyjecia zamowien przekazanych
+									do RSW
+									(zwracana tylko gdy result=0)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element type="tns:result" name="result">
+						</xs:element>
+						<xs:element type="xs:string" name="channel">
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="submittedOrderResult">
+				<xs:annotation>
+					<xs:documentation>Wynik przyjecia zamowienia przekazanego do RSW
+					</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="orderId">
+					</xs:element>
+					<xs:element type="tns:result" name="result">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="account">
+				<xs:annotation>
+					<xs:documentation>Dane konta</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="accountCode"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="paymentType"
+						minOccurs="0">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="service">
+				<xs:annotation>
+					<xs:documentation>Dane uslugi</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="name">
+					</xs:element>
+					<xs:element type="xs:boolean" name="isCommitment">
+					</xs:element>
+					<xs:element type="xs:string" name="aboPrice">
+					</xs:element>
+					
+					//TODO change serviceId to snCode and package to spCode
+					
+					<xs:element type="xs:string" name="snCode">
+					</xs:element>
+					<xs:element type="xs:string" name="spCode">
+					</xs:element>
+					<xs:element type="xs:string" name="level">
+					</xs:element>
+					<xs:element type="tns:serviceParameter" name="parameters"
+						minOccurs="0" maxOccurs="unbounded">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="serviceParameter">
+				<xs:annotation>
+					<xs:documentation>Parametr uslugi</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="paramName">
+					</xs:element>
+					<xs:element type="xs:string" name="paramValue">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="bonus">
+				<xs:annotation>
+					<xs:documentation>Dane nagrody</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="name">
+					</xs:element>
+					<xs:element type="xs:string" name="bonusId">
+					</xs:element>
+					<xs:element type="xs:string" name="snCode">
+					</xs:element>
+					<xs:element type="xs:string" name="spCode">
+					</xs:element>
+					<xs:element type="xs:boolean" name="isGratisBonusGroup">
+					</xs:element>
+					
+					//TODO add offer
+					
+					<xs:element type="xs:string" name="offer">
+					</xs:element>
+					<xs:element type="tns:serviceParameter" name="parameters"
+						minOccurs="0" maxOccurs="unbounded">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="loyalty">
+				<xs:annotation>
+					<xs:documentation>Lojalka na usługę</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="offer">
+					</xs:element>
+					<xs:element type="xs:string" name="penalty">
+					</xs:element>
+					<xs:element type="xs:string" name="length">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="companyOrderData">
+				<xs:annotation>
+					<xs:documentation>Dane firmy specyficzne
+						dla zamowienia
+					</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="tns:company" name="companyData">
+					</xs:element>
+					<xs:element type="tns:person" name="representative">
+						<xs:annotation>
+							<xs:documentation>Dane reprezentanta</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element type="tns:fullAddress" name="invoiceAddress">
+						<xs:annotation>
+							<xs:documentation>Dane adresowe faktury</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element type="tns:fullAddress" name="shippingAddress">
+						<xs:annotation>
+							<xs:documentation>Dane adresowe wysylki</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="personalOrderData">
+				<xs:annotation>
+					<xs:documentation>Dane osobowe specyficzne
+						dla zamowienia
+					</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="tns:person" name="personalData">
+					</xs:element>
+					<xs:element type="tns:fullAddress" name="contractAddress"
+						minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Dane adresowe umowy</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element type="tns:fullAddress" name="invoiceAddress">
+						<xs:annotation>
+							<xs:documentation>Dane adresowe faktury</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element type="tns:fullAddress" name="shippingAddress">
+						<xs:annotation>
+							<xs:documentation>Dane adresowe wysylki</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="company">
+				<xs:annotation>
+					<xs:documentation>Dane firmy</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="companyName">
+					</xs:element>
+					<xs:element type="xs:string" name="companyType"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="regon">
+					</xs:element>
+					<xs:element type="xs:string" name="nip">
+					</xs:element>
+					<xs:element type="xs:string" name="activeMsisdn"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="tns:address" name="address" minOccurs="0">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="person">
+				<xs:annotation>
+					<xs:documentation>Dane osobowe</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="firstName">
+					</xs:element>
+					<xs:element type="xs:string" name="lastName">
+					</xs:element>
+					<xs:element type="xs:string" name="identityCard"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="pesel" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="email" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="phone" minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="mobilePhone"
+						minOccurs="0">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="address">
+				<xs:annotation>
+					<xs:documentation>Ogolne dane adresowe</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="street">
+					</xs:element>
+					<xs:element type="xs:string" name="zipcode">
+					</xs:element>
+					<xs:element type="xs:string" name="city">
+					</xs:element>
+					<xs:element type="xs:string" name="house">
+					</xs:element>
+					<xs:element type="xs:string" name="flat" minOccurs="0">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="fullAddress">
+				<xs:annotation>
+					<xs:documentation>Pelne dane adresowe (z adresatem przesylki)
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexContent>
+					<xs:extension base="tns:address">
+						<xs:sequence>
+							<xs:element type="xs:string" name="firstName"
+								minOccurs="0">
+							</xs:element>
+							<xs:element type="xs:string" name="lastName"
+								minOccurs="0">
+							</xs:element>
+							<xs:element type="xs:string" name="companyName"
+								minOccurs="0">
+							</xs:element>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:simpleType name="segment">
+				<xs:annotation>
+					<xs:documentation>Segment</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:complexType name="sku">
+				<xs:annotation>
+					<xs:documentation>Dane pozycji SKU</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="skuIdIFS">
+					</xs:element>
+					<xs:element type="xs:double" name="skuNetPrice">
+					</xs:element>
+					<xs:element type="xs:double" name="skuNetPriceWithDiscounts">
+					</xs:element>
+					<xs:element type="tns:skuType" name="skuType">
+					</xs:element>
+					<xs:element type="xs:string" name="skuReservationLineId"
+						minOccurs="0">
+					</xs:element>
+					<xs:element type="xs:string" name="skuReservationId"
+						minOccurs="0">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:simpleType name="skuType">
+				<xs:annotation>
+					<xs:documentation>Typ sku</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="deliveryForm">
+				<xs:annotation>
+					<xs:documentation>Sposob dostawy</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="shippingType">
+				<xs:annotation>
+					<xs:documentation>Typ dostawy</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="agreement">
+				<xs:annotation>
+					<xs:documentation>Zgoda na przetwarzanie danych
+					</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:complexType name="additionalAgreement">
+				<xs:annotation>
+					<xs:documentation>Zgoda dodatkowa (predefiniowana)
+					</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="id">
+					</xs:element>
+					<xs:element type="xs:string" name="name">
+					</xs:element>
+					<xs:element type="tns:agreement" name="agreement">
+					</xs:element>
+					<xs:element type="xs:string" name="sequence" minOccurs="0">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="result">
+				<xs:annotation>
+					<xs:documentation>Wynik operacji</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element type="xs:string" name="errorCode" nillable="true">
+					</xs:element>
+					<xs:element type="xs:string" name="errorDesc" minOccurs="0"
+						nillable="true">
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</types>
+	<message name="submitRSWOrder">
+		<part xmlns:partns="http://rsw.orange.pl/tlsAdapter/to/" name="docSubmitRSWOrderRequest"
+			element="partns:docSubmitRSWOrderRequest">
+		</part>
+	</message>
+	<message name="submitRSWOrderResponse">
+		<part xmlns:partns="http://rsw.orange.pl/tlsAdapter/to/" name="docSubmitRSWOrderResponse"
+			element="partns:docSubmitRSWOrderResponse">
+		</part>
+	</message>
+	<portType name="TLSAdapterManager">
+		<operation name="submitRSWOrder">
+			<input message="tns:submitRSWOrder">
+			</input>
+			<output message="tns:submitRSWOrderResponse">
+			</output>
+		</operation>
+	</portType>
+	<binding type="tns:TLSAdapterManager" name="TLSAdapterManager">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="submitRSWOrder">
+			<soap:operation style="document" soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="TLSAdapterService">
+		<port name="TLSAdapterManager" binding="tns:TLSAdapterManager">
+			<soap:address
+				location="http://rh-prersw1-slb.centertel.pl:7001/tls-bpm-ml-adapter/Port1" />
+		</port>
+	</service>
+</definitions>

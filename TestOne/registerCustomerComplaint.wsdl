@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<wsdl:definitions name="ptk_channel_sgw" targetNamespace="http://centertel.pl/ptk/channel/sgw/registerCustomerComplaint"
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+			xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+			xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			xmlns:tns="http://centertel.pl/ptk/channel/sgw/registerCustomerComplaint">
+	<wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://centertel.pl/ptk/channel/sgw/registerCustomerComplaint" xmlns:ptk.channel.sgw.doc="http://centertel.pl/ptk/channel/sgw/registerCustomerComplaint" xmlns:tns="http://localhost/ptk/channel/sgw/registerCustomerComplaint">
+          <xsd:import namespace="http://localhost/ptk/channel/sgw/registerCustomerComplaint"/>
+          <xsd:element name="docRegisterCustomerComplaintIn" type="tns:docRegisterCustomerComplaintIn2"/>
+          <xsd:element name="docRegisterCustomerComplaintOut" type="tns:docRegisterCustomerComplaintOut2"/>
+        </xsd:schema>
+
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost/ptk/channel/sgw/registerCustomerComplaint" xmlns:tns="http://localhost/ptk/channel/sgw/registerCustomerComplaint" xmlns:ptk.channel.sgw.doc="http://centertel.pl/ptk/channel/sgw/registerCustomerComplaint">
+          <xsd:import namespace="http://centertel.pl/ptk/channel/sgw/registerCustomerComplaint"/>
+          <xsd:complexType name="docRegisterCustomerComplaintIn">
+            <xsd:sequence>
+              <xsd:element ref="ptk.channel.sgw.doc:docRegisterCustomerComplaintIn"/>
+              <xsd:any processContents="lax"/>
+            </xsd:sequence>
+            <xsd:anyAttribute processContents="lax"/>
+          </xsd:complexType>
+          <xsd:complexType name="docRegisterCustomerComplaintIn2">
+            <xsd:sequence>
+              <xsd:element name="object" nillable="true">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="msisdn" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="accountId" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="contractId" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="customerId" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="accountCode" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="operator" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="designationNumber" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="groupId" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="personId" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="loyaltyCardNumber" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="auxContractId" nillable="true" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="address" nillable="true">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="addressId" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="addressName1" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="addressName2" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="addressName3" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="street" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="streetType" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="house" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="flat" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="city" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="zip" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="post" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="country" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="addressTypes" nillable="true" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="isRelated" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="numberingZone" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="location" nillable="true" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="coordinateX" nillable="true" type="xsd:string"/>
+                          <xsd:element name="coordinateY" nillable="true" type="xsd:string"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="voivodship" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="county" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="commune" nillable="true" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="contactPhone" nillable="true">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="phoneNumber" nillable="true" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="areaCode" nillable="true" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="serviceType" nillable="true" type="xsd:string"/>
+              <xsd:element name="service" nillable="true" type="xsd:string"/>
+              <xsd:element name="serviceDetailed" nillable="true" type="xsd:string"/>
+              <xsd:element name="symptom" nillable="true" type="xsd:string"/>
+              <xsd:element name="symptomDetailed" nillable="true" type="xsd:string"/>
+              <xsd:element name="complaintDetails" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="dateFrom" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="contactMethod" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="docRegisterCustomerComplaintOut">
+            <xsd:sequence>
+              <xsd:element ref="ptk.channel.sgw.doc:docRegisterCustomerComplaintOut"/>
+              <xsd:any processContents="lax"/>
+            </xsd:sequence>
+            <xsd:anyAttribute processContents="lax"/>
+          </xsd:complexType>
+          <xsd:complexType name="docRegisterCustomerComplaintOut2">
+            <xsd:sequence>
+              <xsd:element name="result" nillable="true">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="errorCode" nillable="true" type="xsd:string"/>
+                    <xsd:element name="errorDesc" nillable="true" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:schema>
+
+	</wsdl:types>
+	
+	<wsdl:message name="registerCustomerComplaint">
+		<wsdl:part name="docRegisterCustomerComplaintIn" element="tns:docRegisterCustomerComplaintIn"/>
+	</wsdl:message>
+	
+	<wsdl:message name="registerCustomerComplaintOutput">
+		<wsdl:part name="docRegisterCustomerComplaintOut" element="tns:docRegisterCustomerComplaintOut"/>
+	</wsdl:message>
+	<wsdl:portType name="ptk_channel_sgwPortType">
+		<wsdl:operation name="registerCustomerComplaint">
+			<wsdl:input message="tns:registerCustomerComplaint"/>
+			<wsdl:output message="tns:registerCustomerComplaintOutput"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ptk_channel_sgwBinding" type="tns:ptk_channel_sgwPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="registerCustomerComplaint">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ptk_channel_sgwService">
+		<wsdl:port name="ptk_channel_sgwPort0" binding="tns:ptk_channel_sgwBinding">
+			<soap:address location="http://stranger2:6655/soap/docLiteral"/>
+		</wsdl:port>
+	</wsdl:service>
+	</wsdl:definitions>
